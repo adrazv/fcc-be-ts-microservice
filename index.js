@@ -24,10 +24,10 @@ app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 20
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
-  res.sendFile(__dirname + '/views/index.html');
-});
+// http://expressjs.com/en/starter/basic-routing.html ########
+//app.get("/", function (req, res) {
+//  res.sendFile(__dirname + '/views/index.html');
+//});
 
 
 // your first API endpoint... 
@@ -44,9 +44,21 @@ app.get("/api/:date?", (req, res)=>{
     res.json({ unix: date.getTime() });
 });
 
+//teste1
+app.get("/", (req, res) => [
+  res.send("Hello World!")
+]);
+//teste2
+app.get("/api/name/1", (req, res) => {
+  const firstname = req.query.firstname;
+  const lastname = req.query.lastname;
 
-
-
+  if (firstname && lastname) {
+      res.send(`Nome completo: ${firstname} ${lastname}`)
+  } else {
+      res.send("Por favor forneça o nome e sobrenome.")
+  }
+});
 
 
 
