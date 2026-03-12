@@ -37,29 +37,58 @@ app.get("/api/hello", function (req, res) {
 
 //############
 
-app.get("/api/:date?", (req, res)=>{
+app.get("/api/:date?", (req, res)=>{ // route definition
     let dateParam = req.params.date;
     let date = new Date(dateParam);
 
-    res.json({ unix: date.getTime() });
+    // For an invalid date, Express converts NaN to null when sending JSON.
+
+    if (isNaN(date.getTime())) {
+          res.send("Please provide a valid date.")
+    
+    } else {
+            // It does not show as normal webpage content
+            //  because sending an object
+            // makes Express set the response 
+            // as JSON instead of plain text.
+           //res.send({ unix: date.getTime() });
+           res.send(`Unix time: ${date.getTime()}`);
+    }
 });
 
-//teste1
+// ➡️ : creates a route parameter (a dynamic value that comes 
+// from the URL path and is stored in 
+// req.params.date, inside the req.params object).
+
+// ➡️ ? in the route definition = optional parameter.
+
+
+//test1
 app.get("/", (req, res) => [
   res.send("Hello World!")
 ]);
-//teste2
-app.get("/api/name/1", (req, res) => {
+//test2
+app.get("/test2", (req, res) => {
   const firstname = req.query.firstname;
   const lastname = req.query.lastname;
 
   if (firstname && lastname) {
-      res.send(`Nome completo: ${firstname} ${lastname}`)
+      res.send(`Full name: ${firstname} ${lastname}`)
   } else {
-      res.send("Por favor forneça o nome e sobrenome.")
+      res.send("Please provide both first name and last name.")
   }
 });
+// ➡️ ? in the URL = start of the query string (optional key=value data).
 
+//URL => http://localhost:3000/test2?firstname=John&lastname=Doe
+
+
+
+
+//test3
+app.get("/api/test3/", (req, res) =>{
+
+})
 
 
 
