@@ -36,7 +36,7 @@ app.get("/api/hello", function (req, res) {
 });
 
 //############
-
+/*
 app.get("/api/:date?", (req, res)=>{ // route definition
     let dateParam = req.params.date;
     let date = new Date(dateParam);
@@ -93,6 +93,17 @@ app.get("/api/test3/", (req, res) =>{
 
 
 //############
+*/
+
+app.get("/api/:date?", (req, res) =>{
+  let dateParam = req.params.date;
+  let date = new Date(dateParam);
+
+  res.json({ unix: date.getTime() });
+});
+
+
+
 
 
 
