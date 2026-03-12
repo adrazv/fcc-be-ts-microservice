@@ -99,8 +99,11 @@ app.get("/api/:date?", (req, res) =>{
   let dateParam = req.params.date;
   let date = new Date(dateParam);
 
-  res.json({ unix: date.getTime() });
-  res.json({ utc: date.toUTCString() });
+  res.json({ 
+    unix: date.getTime(),
+    utc: date.toUTCString()
+   });
+  
 });
 
 
