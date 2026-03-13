@@ -135,7 +135,7 @@ app.get("/api/:date?", (req, res) => {
 
           res.json({
             unix: date.getTime(),
-            tuc: date.toUTCString()
+            utc: date.toUTCString()
           });
   };
 });
