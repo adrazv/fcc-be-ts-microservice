@@ -108,7 +108,7 @@ app.get("/api/test/:date?", (req, res) => {
 
 app.get("/api/:date?", (req, res) => {
 
-  let dateParam = req.params.date;
+  const dateParam = req.params.date;
 
   if (!dateParam) {
           const now = new Date()
